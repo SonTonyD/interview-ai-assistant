@@ -1,0 +1,110 @@
+.container {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 900px;
+}
+
+.profile-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.profile-form textarea {
+  width: 100%;
+  height: 100%;
+}
+
+button {
+  width: 10rem;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+
+  cursor: pointer;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  background-color: darkslategray;
+  color: white;
+}
+
+/* Step 2 */
+.question-to-prepare {
+  display: grid;
+  gap: 1rem;
+}
+
+.question-card-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.question-card-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.question-card {
+  padding: 2rem 4rem;
+  background-color: lightgoldenrodyellow;
+  border-radius: 15px;
+}
+
+.buttons-step {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+/* Step 3 */
+
+.simulation-wrapper {
+  display: grid;
+  gap: 2rem;
+  margin-top: 100px;
+
+  background-color: lightseagreen;
+  padding: 5rem 15rem;
+  border-radius: 15px;
+}
+
+.simulation-answer {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.simulation-answer textarea {
+  width: 100%;
+  height: 200px;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Step 4 */
+.question-answer-list {
+  background-color: lightcyan;
+  border-radius: 15px;
+  padding: 3rem 5rem;
+}
+
+.feedback-card {
+  background-color: rgb(228, 255, 160);
+  border-radius: 15px;
+  padding: 1rem 1rem;
+}

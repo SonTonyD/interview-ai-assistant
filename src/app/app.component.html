@@ -1,0 +1,120 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="content">
+      @if(step === 1) {
+      <h1>Informations sur votre profil</h1>
+      <form action="" class="profile-form">
+        <label for="secteur">
+          <p>Secteur</p>
+          <input id="secteur" type="text" placeholder="Informatique, Banque" />
+        </label>
+        <label for="description-perso">
+          <p>Description Personnelle</p>
+          <textarea
+            name=""
+            id="description-perso"
+            placeholder="Quelques mots sur vous"
+          ></textarea>
+        </label>
+        <label for="poste">
+          <p>Poste</p>
+          <input
+            id="poste"
+            type="text"
+            placeholder="Comptable, Rh, Ingénieur Java"
+          />
+        </label>
+        <label for="objectif-entretien">
+          <p>Objectif de l'entretien</p>
+          <textarea
+            name=""
+            id="objectif-entretien"
+            placeholder="Devenir plus confiant, être plus convaincant sur mes softs skills"
+          ></textarea>
+        </label>
+        <label for="offre-emploi">
+          <p>Offre d'emploi complète</p>
+          <textarea
+            name=""
+            id="offre-emploi"
+            placeholder="Une offre d'emploi Linkedin par exemple"
+          ></textarea>
+        </label>
+        <button type="button" (click)="setSteps(2)">Next Step</button>
+      </form>
+      } @if (step === 2) {
+      <div class="question-to-prepare">
+        <h1>Questions à préparer avant la simulation</h1>
+        <div class="question-card-wrapper">
+          <div class="question-card-list">
+            <h2>Questions techniques</h2>
+            @for (question of technicalQuestions; track $index) {
+            <div class="question-card">
+              <p>{{ question }}</p>
+            </div>
+            }
+          </div>
+          <div class="question-card-list">
+            <h2>Questions Comportementales</h2>
+            @for (question of technicalQuestions; track $index) {
+            <div class="question-card">
+              <p>{{ question }}</p>
+            </div>
+            }
+          </div>
+          <div class="question-card-list">
+            <h2>Questions Personnelles</h2>
+            @for (question of technicalQuestions; track $index) {
+            <div class="question-card">
+              <p>{{ question }}</p>
+            </div>
+            }
+          </div>
+        </div>
+        <div class="buttons-step">
+          <div class="flex-center">
+            <button (click)="setSteps(step - 1)">Previous Step</button>
+          </div>
+          <div class="flex-center">
+            <button (click)="setSteps(step + 1)">Next Step</button>
+          </div>
+        </div>
+      </div>
+      } @if (step === 3) {
+      <h1>Simulation d'entretien</h1>
+      <div class="simulation-wrapper">
+        <h2>{{ simulationQuestions[currentQuestionNumber] }}</h2>
+
+        <label for="reponse" class="simulation-answer">
+          <p>Votre réponse à la question</p>
+          <textarea
+            [(ngModel)]="currentAnswer"
+            name="reponse"
+            id="reponse"
+          ></textarea>
+        </label>
+
+        <div class="flex-end">
+          @if (currentQuestionNumber + 1 < simulationQuestions.length) {
+          <button (click)="nextQuestion()">Valider</button>
+          } @else {
+          <button (click)="onFinishSimulation()">Terminer la simulation</button>
+          }
+        </div>
+      </div>
+      } @if (step === 4) {
+      <h1>Feedback de l'entretien</h1>
+      <h2>Résumé de l'entretien</h2>
+      <div class="question-answer-list">
+        @for (questionAnswer of interviewRecord.questionAnswers; track $index) {
+        <h3>Question {{ $index + 1 }} : {{ questionAnswer.question }}</h3>
+        <p>{{ questionAnswer.answer }}</p>
+        <div class="feedback-card">
+          {{ questionAnswer.feedback }}
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+</div>
