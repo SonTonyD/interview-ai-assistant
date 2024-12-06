@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { InterviewRecordService } from './interview-record.service';
 
 export interface InterviewRecord {
   id: string;
-  userId: string;
-  questionAnswers: QuestionAnswer[];
+  user_id: string;
+  question_answers: QuestionAnswer[];
 }
 
 export interface QuestionAnswer {
@@ -39,14 +40,16 @@ export class AppComponent implements OnInit {
 
   interviewRecord: InterviewRecord = {
     id: '1',
-    userId: '1',
-    questionAnswers: [],
+    user_id: '1',
+    question_answers: [],
   };
+  title = 'interview-ai-assistant';
 
   ngOnInit(): void {
     this.step = 1;
   }
-  title = 'interview-ai-assistant';
+
+  constructor(private interviewRecordService: InterviewRecordService) {}
 
   setSteps(newStep: number) {
     this.step = newStep;
@@ -60,7 +63,7 @@ export class AppComponent implements OnInit {
       question: currentQuestion,
       answer: currentAnswer,
     };
-    this.interviewRecord.questionAnswers.push(questionAnswer);
+    this.interviewRecord.question_answers.push(questionAnswer);
   }
 
   nextQuestion() {
@@ -82,6 +85,13 @@ export class AppComponent implements OnInit {
         this.simulationQuestions[this.currentQuestionNumber],
         this.currentAnswer
       );
+
+      this.interviewRecordService
+        .generateFeedback(this.interviewRecord)
+        .subscribe((newRecord: InterviewRecord) => {
+          this.interviewRecord = newRecord;
+        });
+
       this.setSteps(this.step + 1);
     }
   }
