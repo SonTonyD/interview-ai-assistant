@@ -58,7 +58,7 @@ button:hover {
 }
 
 .question-card {
-  padding: 2rem 4rem;
+  padding: 0.5rem 1rem;
   background-color: lightgoldenrodyellow;
   border-radius: 15px;
 }

@@ -4,21 +4,28 @@
       @if(step === 1) {
       <h1>Informations sur votre profil</h1>
       <form action="" class="profile-form">
-        <label for="secteur">
-          <p>Secteur</p>
-          <input id="secteur" type="text" placeholder="Informatique, Banque" />
-        </label>
         <label for="description-perso">
           <p>Description Personnelle</p>
           <textarea
+            [(ngModel)]="profileInfo.personnal_description"
             name=""
             id="description-perso"
             placeholder="Quelques mots sur vous"
           ></textarea>
         </label>
+        <label for="secteur">
+          <p>Secteur</p>
+          <input
+            [(ngModel)]="profileInfo.secteur"
+            id="secteur"
+            type="text"
+            placeholder="Informatique, Banque"
+          />
+        </label>
         <label for="poste">
           <p>Poste</p>
           <input
+            [(ngModel)]="profileInfo.poste"
             id="poste"
             type="text"
             placeholder="Comptable, Rh, Ingénieur Java"
@@ -27,6 +34,7 @@
         <label for="objectif-entretien">
           <p>Objectif de l'entretien</p>
           <textarea
+            [(ngModel)]="profileInfo.objectif_entretien"
             name=""
             id="objectif-entretien"
             placeholder="Devenir plus confiant, être plus convaincant sur mes softs skills"
@@ -35,12 +43,13 @@
         <label for="offre-emploi">
           <p>Offre d'emploi complète</p>
           <textarea
+            [(ngModel)]="profileInfo.offre_emploi"
             name=""
             id="offre-emploi"
             placeholder="Une offre d'emploi Linkedin par exemple"
           ></textarea>
         </label>
-        <button type="button" (click)="setSteps(2)">Next Step</button>
+        <button type="button" (click)="submitForm()">Next Step</button>
       </form>
       } @if (step === 2) {
       <div class="question-to-prepare">
@@ -106,7 +115,8 @@
       <h1>Feedback de l'entretien</h1>
       <h2>Résumé de l'entretien</h2>
       <div class="question-answer-list">
-        @for (questionAnswer of interviewRecord.question_answers; track $index) {
+        @for (questionAnswer of interviewRecord.question_answers; track $index)
+        {
         <h3>Question {{ $index + 1 }} : {{ questionAnswer.question }}</h3>
         <p>{{ questionAnswer.answer }}</p>
         <div class="feedback-card">

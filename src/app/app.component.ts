@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InterviewRecordService } from './interview-record.service';
+import { ProfileInfo, QuestionService } from './question.service';
 
 export interface InterviewRecord {
   id: string;
@@ -28,16 +29,13 @@ export class AppComponent implements OnInit {
     `Qu'est-ce que la clean architecture`,
     `Quelles est la différence entre le SQL et le NoSQL ?`,
   ];
-
   currentQuestionNumber = 0;
   simulationQuestions: string[] = [
     `Y'a t il du multihéritage en java ?`,
     `Qu'est-ce que la clean architecture`,
     `Quelles est la différence entre le SQL et le NoSQL ?`,
   ];
-
   currentAnswer: any;
-
   interviewRecord: InterviewRecord = {
     id: '1',
     user_id: '1',
@@ -45,14 +43,39 @@ export class AppComponent implements OnInit {
   };
   title = 'interview-ai-assistant';
 
+  /* formulaire profile */
+  profileInfo: ProfileInfo = {
+    id: '1',
+    user_id: '1',
+    personnal_description: '',
+    secteur: '',
+    poste: '',
+    objectif_entretien: '',
+    offre_emploi: '',
+  };
+
   ngOnInit(): void {
     this.step = 1;
   }
 
-  constructor(private interviewRecordService: InterviewRecordService) {}
+  constructor(
+    private interviewRecordService: InterviewRecordService,
+    private questionService: QuestionService
+  ) {}
 
   setSteps(newStep: number) {
     this.step = newStep;
+  }
+
+  submitForm() {
+    this.questionService
+      .generateQuestionsBasedOnProfile(this.profileInfo)
+      .subscribe((result: string[]) => {
+        this.technicalQuestions = result;
+      });
+    if (this.step) {
+      this.setSteps(this.step + 1);
+    }
   }
 
   updateInterviewRecordQuestionAnswers(
