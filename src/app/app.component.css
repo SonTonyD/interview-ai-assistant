@@ -1,3 +1,13 @@
+h1 {
+  color: var(--color-primary);
+  font-weight: 800;
+}
+
+h2 {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -14,36 +24,77 @@
   width: 900px;
 }
 
+/* step 1 */
+
 .profile-form {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 1rem;
+
+  background-color: var(--color-light-background);
+  border: 3px solid var(--color-border);
+
+  padding: 3rem 3rem;
+  border-radius: 20px;
 }
 
 .profile-form textarea {
-  width: 100%;
-  height: 100%;
+  width: 70%;
+  height: 90%;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+}
+
+.profile-form textarea:focus {
+  outline: none;
+  border: 3px solid var(--color-primary);
 }
 
 button {
+  margin-top: 20px;
   width: 10rem;
   border: none;
-  padding: 1rem 2rem;
-  border-radius: 15px;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-border);
+
+  color: white;
 
   cursor: pointer;
 }
 
 button:hover {
-  transform: translateY(-2px);
-  background-color: darkslategray;
-  color: white;
+  background-color: var(--color-hover);
+  color: var(--color-main-text);
+}
+
+input {
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  width: 300px;
+}
+
+.profile-form p {
+  color: var(--color-main-text);
+  font-weight: 600;
 }
 
 /* Step 2 */
 .question-to-prepare {
+  margin-top: 50px;
+
   display: grid;
   gap: 1rem;
+
+  background-color: var(--color-light-background);
+  border: 3px solid var(--color-border);
+
+  padding: 3rem 3rem;
+  border-radius: 20px;
 }
 
 .question-card-wrapper {
@@ -54,13 +105,18 @@ button:hover {
 
 .question-card-list {
   display: grid;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .question-card {
   padding: 0.5rem 1rem;
-  background-color: lightgoldenrodyellow;
-  border-radius: 15px;
+  background-color: var(--color-secondary);
+  border-radius: 10px;
+  color: white;
+}
+
+.question-card p {
+  color: var(--color-secondary-text);
 }
 
 .buttons-step {
@@ -76,9 +132,11 @@ button:hover {
   gap: 2rem;
   margin-top: 100px;
 
-  background-color: lightseagreen;
-  padding: 5rem 15rem;
-  border-radius: 15px;
+  background-color: var(--color-light-background);
+  border: 3px solid var(--color-border);
+
+  padding: 3rem 3rem;
+  border-radius: 20px;
 }
 
 .simulation-answer {
@@ -89,6 +147,18 @@ button:hover {
 .simulation-answer textarea {
   width: 100%;
   height: 200px;
+
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+}
+
+.simulation-answer textarea:focus {
+  outline: none;
+  border: 3px solid var(--color-primary);
+}
+
+.simulation-answer p {
+  color: var(--color-secondary-text);
 }
 
 .flex-end {
@@ -97,14 +167,25 @@ button:hover {
 }
 
 /* Step 4 */
+.feedback-panel {
+  margin-top: 50px;
+  background-color: var(--color-light-background);
+  border: 3px solid var(--color-border);
+
+  padding: 3rem 3rem;
+  border-radius: 20px;
+}
+
 .question-answer-list {
-  background-color: lightcyan;
   border-radius: 15px;
   padding: 3rem 5rem;
 }
 
+.question-answer {
+}
+
 .feedback-card {
-  background-color: rgb(228, 255, 160);
   border-radius: 15px;
-  padding: 1rem 1rem;
+  padding: 1rem 0rem;
+  color: darkgreen;
 }

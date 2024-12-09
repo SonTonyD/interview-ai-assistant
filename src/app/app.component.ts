@@ -40,9 +40,46 @@ export class AppComponent implements OnInit {
   ];
   currentAnswer: any;
   interviewRecord: InterviewRecord = {
-    id: '1',
-    user_id: '1',
-    question_answers: [],
+    id: '123456',
+    user_id: 'user_789',
+    question_answers: [
+      {
+        question: 'Pouvez-vous me parler de vous et de votre parcours ?',
+        answer:
+          "Je suis développeur full stack avec une expertise en Angular et Java Spring. J'ai travaillé sur plusieurs projets personnels et professionnels, notamment dans le domaine de la finance.",
+        feedback:
+          'Votre réponse est claire et montre une bonne maîtrise de vos compétences. Cependant, vous pourriez ajouter un exemple spécifique de projet pour renforcer votre propos.',
+      },
+      {
+        question: "Comment gérez-vous les conflits au sein d'une équipe ?",
+        answer:
+          'Je favorise toujours la communication ouverte et la médiation pour résoudre les différends. Je veille à écouter toutes les parties et à trouver une solution acceptable pour tout le monde.',
+        feedback:
+          'Bonne approche. Vous pourriez inclure un exemple concret de gestion de conflit pour illustrer vos compétences en résolution de problèmes.',
+      },
+      {
+        question:
+          'Pouvez-vous décrire un défi technique que vous avez surmonté ?',
+        answer:
+          "Lors d'un projet récent, j'ai optimisé les performances d'une application en réduisant les temps de chargement de 50 % grâce à des techniques de mise en cache et à l'optimisation des requêtes API.",
+        feedback:
+          'Excellente réponse avec des résultats mesurables. Vous pourriez préciser les outils ou technologies utilisés pour renforcer votre crédibilité.',
+      },
+      {
+        question: 'Où vous voyez-vous dans cinq ans ?',
+        answer:
+          "Je me vois évoluer vers un rôle de lead développeur, en encadrant une équipe et en participant à des projets stratégiques pour l'entreprise.",
+        feedback:
+          'Votre vision est cohérente et alignée sur une progression logique. Vous pourriez toutefois mentionner comment vous comptez acquérir les compétences nécessaires pour ce rôle.',
+      },
+      {
+        question: 'Quelles sont vos forces et vos faiblesses ?',
+        answer:
+          "Ma principale force est ma capacité à apprendre rapidement et à m'adapter aux nouvelles technologies. Une faiblesse serait que je me concentre parfois trop sur les détails, mais j'y travaille en priorisant mieux mes tâches.",
+        feedback:
+          'Bonne identification de vos forces et faiblesses. Vous pourriez expliquer comment votre capacité à apprendre compense vos éventuelles lacunes liées au perfectionnisme.',
+      },
+    ],
   };
   title = 'interview-ai-assistant';
 
@@ -64,7 +101,7 @@ export class AppComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.step = 1;
+    this.step = 4;
   }
 
   constructor(

@@ -1,3 +1,14 @@
+:root {
+  --color-light-background: #f7f9ff;
+  --color-border: #8da4ef;
+  --color-secondary: #d2deff;
+  --color-primary: #3358d4;
+  --color-hover: #abbdf9;
+
+  --color-main-text: #1f2d5c;
+  --color-secondary-text: #3a5bc7;
+}
+
 /* 1. Use a more-intuitive box-sizing model */
 *,
 *::before,

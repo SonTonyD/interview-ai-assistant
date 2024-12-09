@@ -97,19 +97,23 @@
         </div>
       </div>
       } @if (step === 4) {
-      <h1>Feedback de l'entretien</h1>
-      <h2>Résumé de l'entretien</h2>
-      <div class="question-answer-list">
-        @for (questionAnswer of interviewRecord.question_answers; track $index)
-        {
-        <h3>Question {{ $index + 1 }} : {{ questionAnswer.question }}</h3>
-        <p>{{ questionAnswer.answer }}</p>
-        <div class="feedback-card">
-          <p>
-            {{ questionAnswer.feedback }}
-          </p>
+      <div class="feedback-panel">
+        <h1>Feedback de l'entretien</h1>
+        <h2>Résumé de l'entretien</h2>
+        <div class="question-answer-list">
+          @for (questionAnswer of interviewRecord.question_answers; track
+          $index) {
+          <div class="question-answer">
+            <h3>Question {{ $index + 1 }} : {{ questionAnswer.question }}</h3>
+            <p>{{ questionAnswer.answer }}</p>
+            <div class="feedback-card">
+              <p>
+                {{ questionAnswer.feedback }}
+              </p>
+            </div>
+          </div>
+          }
         </div>
-        }
       </div>
       }
     </div>
