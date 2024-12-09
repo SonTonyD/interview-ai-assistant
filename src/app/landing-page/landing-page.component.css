@@ -1,0 +1,78 @@
+nav {
+  min-height: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 50px;
+  background-color: var(--color-main-text);
+}
+
+nav h1 {
+  color: white;
+}
+
+h1 {
+  color: var(--color-main-text);
+  text-align: center;
+}
+
+button {
+  outline: none;
+  border: 2px solid var(--color-border);
+  border-radius: 20px;
+  padding: 0.5rem 3rem;
+  cursor: pointer;
+}
+
+nav button {
+  outline: none;
+  border: 2px solid var(--color-border);
+  border-radius: 20px;
+  padding: 0.5rem 3rem;
+  cursor: pointer;
+  background-color: var(--color-light-background);
+}
+
+nav button:hover {
+  background-color: var(--color-hover);
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--color-light-background);
+}
+
+.content {
+  margin: 0 auto;
+  width: 900px;
+}
+
+.hero-banner {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero-banner-wrapper {
+  background-color: white;
+  width: 100%;
+}
+
+.hero-banner button {
+  background-color: var(--color-primary);
+  padding: 1rem 3rem;
+  cursor: pointer;
+  color: white;
+}
+
+.hero-banner button:hover {
+  background-color: var(--color-hover);
+}
+
+.hero-banner img {
+  width: 17rem;
+}

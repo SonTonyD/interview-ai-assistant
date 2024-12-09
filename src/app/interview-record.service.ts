@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { InterviewRecord } from './app.component';
+import { InterviewRecord } from './interview-simulation-page/interview-simulation-page.component';
 import { ProfileInfo } from './question.service';
 
 export interface FeedbackRequest {
