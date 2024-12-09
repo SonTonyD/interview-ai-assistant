@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { InterviewRecordService } from './interview-record.service';
+import {
+  FeedbackRequest,
+  InterviewRecordService,
+} from './interview-record.service';
 import { ProfileInfo, QuestionService } from './question.service';
 
 export interface InterviewRecord {
@@ -44,6 +47,12 @@ export class AppComponent implements OnInit {
   title = 'interview-ai-assistant';
 
   /* formulaire profile */
+  personnal_description = '';
+  secteur = '';
+  poste = '';
+  objectif_entretien = '';
+  offre_emploi = '';
+
   profileInfo: ProfileInfo = {
     id: '1',
     user_id: '1',
@@ -68,14 +77,21 @@ export class AppComponent implements OnInit {
   }
 
   submitForm() {
+    this.profileInfo.personnal_description = this.personnal_description;
+    this.profileInfo.secteur = this.secteur;
+    this.profileInfo.poste = this.poste;
+    this.profileInfo.objectif_entretien = this.objectif_entretien;
+    this.profileInfo.offre_emploi = this.offre_emploi;
+
     this.questionService
       .generateQuestionsBasedOnProfile(this.profileInfo)
       .subscribe((result: string[]) => {
         this.technicalQuestions = result;
+        this.simulationQuestions = this.getRandomQuestions(result, 3);
+        if (this.step) {
+          this.setSteps(this.step + 1);
+        }
       });
-    if (this.step) {
-      this.setSteps(this.step + 1);
-    }
   }
 
   updateInterviewRecordQuestionAnswers(
@@ -109,13 +125,28 @@ export class AppComponent implements OnInit {
         this.currentAnswer
       );
 
+      const feedback: FeedbackRequest = {
+        record: this.interviewRecord,
+        profile: this.profileInfo,
+      };
+
       this.interviewRecordService
-        .generateFeedback(this.interviewRecord)
+        .generateFeedback(feedback)
         .subscribe((newRecord: InterviewRecord) => {
           this.interviewRecord = newRecord;
+          if (this.step) {
+            this.setSteps(this.step + 1);
+          }
         });
-
-      this.setSteps(this.step + 1);
     }
+  }
+
+  private getRandomQuestions(questions: string[], count: number): string[] {
+    if (questions.length <= count) {
+      return questions; // Si moins de questions que le nombre demandé, retourner tout
+    }
+
+    const shuffled = [...questions].sort(() => 0.5 - Math.random()); // Mélanger les questions
+    return shuffled.slice(0, count); // Récupérer les `count` premières
   }
 }

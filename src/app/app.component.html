@@ -7,8 +7,8 @@
         <label for="description-perso">
           <p>Description Personnelle</p>
           <textarea
-            [(ngModel)]="profileInfo.personnal_description"
-            name=""
+            [(ngModel)]="personnal_description"
+            name="personnal_description"
             id="description-perso"
             placeholder="Quelques mots sur vous"
           ></textarea>
@@ -16,17 +16,19 @@
         <label for="secteur">
           <p>Secteur</p>
           <input
-            [(ngModel)]="profileInfo.secteur"
+            [(ngModel)]="secteur"
             id="secteur"
             type="text"
+            name="secteur"
             placeholder="Informatique, Banque"
           />
         </label>
         <label for="poste">
           <p>Poste</p>
           <input
-            [(ngModel)]="profileInfo.poste"
+            [(ngModel)]="poste"
             id="poste"
+            name="poste"
             type="text"
             placeholder="Comptable, Rh, Ingénieur Java"
           />
@@ -34,8 +36,8 @@
         <label for="objectif-entretien">
           <p>Objectif de l'entretien</p>
           <textarea
-            [(ngModel)]="profileInfo.objectif_entretien"
-            name=""
+            [(ngModel)]="objectif_entretien"
+            name="objectif_entretien"
             id="objectif-entretien"
             placeholder="Devenir plus confiant, être plus convaincant sur mes softs skills"
           ></textarea>
@@ -43,8 +45,8 @@
         <label for="offre-emploi">
           <p>Offre d'emploi complète</p>
           <textarea
-            [(ngModel)]="profileInfo.offre_emploi"
-            name=""
+            [(ngModel)]="offre_emploi"
+            name="offre_emploi"
             id="offre-emploi"
             placeholder="Une offre d'emploi Linkedin par exemple"
           ></textarea>
@@ -56,23 +58,6 @@
         <h1>Questions à préparer avant la simulation</h1>
         <div class="question-card-wrapper">
           <div class="question-card-list">
-            <h2>Questions techniques</h2>
-            @for (question of technicalQuestions; track $index) {
-            <div class="question-card">
-              <p>{{ question }}</p>
-            </div>
-            }
-          </div>
-          <div class="question-card-list">
-            <h2>Questions Comportementales</h2>
-            @for (question of technicalQuestions; track $index) {
-            <div class="question-card">
-              <p>{{ question }}</p>
-            </div>
-            }
-          </div>
-          <div class="question-card-list">
-            <h2>Questions Personnelles</h2>
             @for (question of technicalQuestions; track $index) {
             <div class="question-card">
               <p>{{ question }}</p>
