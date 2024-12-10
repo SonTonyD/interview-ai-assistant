@@ -100,9 +100,10 @@ export class InterviewSimulationPageComponent implements OnInit {
     offre_emploi: '',
   };
   isListening: boolean = false;
+  isLoading: boolean = false;
 
   ngOnInit(): void {
-    this.step = 1;
+    this.step = 4;
   }
 
   constructor(
@@ -145,12 +146,17 @@ export class InterviewSimulationPageComponent implements OnInit {
   }
 
   submitForm() {
+    if (this.isLoading) {
+      return;
+    }
+
     this.profileInfo.personnal_description = this.personnal_description;
     this.profileInfo.secteur = this.secteur;
     this.profileInfo.poste = this.poste;
     this.profileInfo.objectif_entretien = this.objectif_entretien;
     this.profileInfo.offre_emploi = this.offre_emploi;
 
+    this.isLoading = true;
     this.questionService
       .generateQuestionsBasedOnProfile(this.profileInfo)
       .subscribe((result: string[]) => {
@@ -159,6 +165,8 @@ export class InterviewSimulationPageComponent implements OnInit {
         if (this.step) {
           this.setSteps(this.step + 1);
         }
+        this.isLoading = false;
+        this.interviewRecord.question_answers = []; //reset des questions_answers si l'utilisateur soumet le formulaire de profile
       });
   }
 
@@ -204,6 +212,10 @@ export class InterviewSimulationPageComponent implements OnInit {
   }
 
   onFinishSimulation() {
+    if (this.isLoading) {
+      return;
+    }
+
     if (this.step) {
       this.updateInterviewRecordQuestionAnswers(
         this.simulationQuestions[this.currentQuestionNumber],
@@ -215,6 +227,8 @@ export class InterviewSimulationPageComponent implements OnInit {
         profile: this.profileInfo,
       };
 
+      this.isLoading = true;
+
       this.interviewRecordService
         .generateFeedback(feedback)
         .subscribe((newRecord: InterviewRecord) => {
@@ -222,6 +236,7 @@ export class InterviewSimulationPageComponent implements OnInit {
           if (this.step) {
             this.setSteps(this.step + 1);
           }
+          this.isLoading = false;
         });
     }
   }
