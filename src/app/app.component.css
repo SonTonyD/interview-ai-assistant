@@ -1,191 +1,63 @@
-h1 {
-  color: var(--color-primary);
-  font-weight: 800;
-}
-
-h2 {
-  color: var(--color-primary);
-  font-weight: 600;
-}
-
-.container {
+.nav {
+  min-height: 75px;
   display: flex;
-  justify-content: center;
-  height: 100vh;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 50px;
+  background-color: var(--color-main-text);
+  width: 100%;
 }
 
-.flex-center {
-  display: flex;
-  justify-content: center;
-}
-
-.wrapper {
-  margin: 0 auto;
-  width: 900px;
-}
-
-/* step 1 */
-
-.profile-form {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-
-  background-color: var(--color-light-background);
-  border: 3px solid var(--color-border);
-
-  padding: 3rem 3rem;
-  border-radius: 20px;
-}
-
-.profile-form textarea {
-  width: 70%;
-  height: 90%;
-  border-radius: 10px;
-  border: 1px solid var(--color-border);
-}
-
-.profile-form textarea:focus {
-  outline: none;
-  border: 3px solid var(--color-primary);
-}
-
-button {
-  margin-top: 20px;
-  width: 10rem;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-
-  background-color: var(--color-primary);
-  border: 2px solid var(--color-border);
-
-  color: white;
-
+.left-nav {
   cursor: pointer;
 }
 
-button:hover {
-  background-color: var(--color-hover);
-  color: var(--color-main-text);
-}
-
-input {
-  padding-block: 0.5rem;
-  padding-inline: 1rem;
-  border-radius: 10px;
-  border: 1px solid var(--color-border);
-  width: 300px;
-}
-
-.profile-form p {
-  color: var(--color-main-text);
-  font-weight: 600;
-}
-
-/* Step 2 */
-.question-to-prepare {
-  margin-top: 50px;
-
-  display: grid;
-  gap: 1rem;
-
-  background-color: var(--color-light-background);
-  border: 3px solid var(--color-border);
-
-  padding: 3rem 3rem;
-  border-radius: 20px;
-}
-
-.question-card-wrapper {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-.question-card-list {
-  display: grid;
-  gap: 0.5rem;
-}
-
-.question-card {
-  padding: 0.5rem 1rem;
-  background-color: var(--color-secondary);
-  border-radius: 10px;
+.nav h1 {
   color: white;
 }
 
-.question-card p {
-  color: var(--color-secondary-text);
+h1 {
+  color: var(--color-main-text);
+  text-align: center;
 }
 
-.buttons-step {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-
-/* Step 3 */
-
-.simulation-wrapper {
-  display: grid;
-  gap: 2rem;
-  margin-top: 100px;
-
-  background-color: var(--color-light-background);
-  border: 3px solid var(--color-border);
-
-  padding: 3rem 3rem;
-  border-radius: 20px;
-}
-
-.simulation-answer {
-  display: grid;
-  gap: 0.5rem;
-}
-
-.simulation-answer textarea {
-  width: 100%;
-  height: 200px;
-
-  border-radius: 10px;
-  border: 1px solid var(--color-border);
-}
-
-.simulation-answer textarea:focus {
+button {
   outline: none;
-  border: 3px solid var(--color-primary);
-}
-
-.simulation-answer p {
-  color: var(--color-secondary-text);
-}
-
-.flex-end {
-  display: flex;
-  justify-content: flex-end;
-}
-
-/* Step 4 */
-.feedback-panel {
-  margin-top: 50px;
-  background-color: var(--color-light-background);
-  border: 3px solid var(--color-border);
-
-  padding: 3rem 3rem;
+  border: 2px solid var(--color-border);
   border-radius: 20px;
+  padding: 0.5rem 3rem;
+  cursor: pointer;
 }
 
-.question-answer-list {
-  border-radius: 15px;
-  padding: 3rem 5rem;
+.nav button {
+  outline: none;
+  border: 2px solid var(--color-border);
+  border-radius: 20px;
+  padding: 0.5rem 3rem;
+  cursor: pointer;
+  background-color: var(--color-light-background);
 }
 
-.question-answer {
+.nav button:hover {
+  background-color: var(--color-hover);
 }
 
-.feedback-card {
-  border-radius: 15px;
-  padding: 1rem 0rem;
-  color: darkgreen;
+@media (max-width: 1024px) {
+  .nav {
+    padding-inline: 10px;
+  }
+
+  .nav h1 {
+    font-size: 16px;
+  }
+
+  .nav button {
+    outline: none;
+    border: 2px solid var(--color-border);
+    border-radius: 20px;
+    padding: 0.25rem 1rem;
+    cursor: pointer;
+    background-color: var(--color-light-background);
+    font-size: 12px;
+  }
 }

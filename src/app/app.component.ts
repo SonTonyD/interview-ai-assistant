@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +8,14 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor(private router: Router) {}
+
+  navigateTo(route: string, itemId?: string) {
+    if (itemId === undefined) {
+      this.router.navigate([route]);
+    } else {
+      this.router.navigate([route, itemId]);
+    }
+  }
+}
