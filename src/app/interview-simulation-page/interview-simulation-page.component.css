@@ -21,7 +21,7 @@ h2 {
 
 .wrapper {
   margin: 0 auto;
-  width: 900px;
+  max-width: 900px;
 }
 
 /* step 1 */
@@ -193,4 +193,42 @@ input:focus {
   border-radius: 15px;
   padding: 1rem 0rem;
   color: darkgreen;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    margin-inline: 10px;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  input {
+    font-size: 12px;
+    width: 100%;
+  }
+
+  .profile-form {
+    padding: 0.5rem 0.5rem;
+  }
+
+  .profile-form textarea {
+    width: 100%;
+    font-size: 12px;
+  }
+
+  .question-to-prepare {
+    padding: 0.5rem 0.5rem;
+  }
+
+  .feedback-panel {
+    padding: 0.5rem 0.5rem;
+  }
+
+  .question-answer-list {
+    padding: 0.5rem 0.5rem;
+  }
 }
