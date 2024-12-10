@@ -72,7 +72,7 @@
             <button (click)="setSteps(step - 1)">Étape précédente</button>
           </div>
           <div class="flex-center">
-            <button (click)="setSteps(step + 1)">Étape suivante</button>
+            <button (click)="setSteps(step + 1)">Démarrer la simulation</button>
           </div>
         </div>
       </div>
@@ -122,7 +122,7 @@
             <h3>Question {{ $index + 1 }} : {{ questionAnswer.question }}</h3>
             <p>{{ questionAnswer.answer }}</p>
             <div class="feedback-card">
-              <p-accordion [value]="['0']" [multiple]="true" [activeIndex]="[]">
+              <p-accordion [value]="['']" [multiple]="true" [activeIndex]="[]">
                 <p-accordion-panel value="0">
                   <p-accordion-header>Points Forts</p-accordion-header>
                   <p-accordion-content>
@@ -147,7 +147,7 @@
                     </p>
                   </p-accordion-content>
                 </p-accordion-panel>
-                <p-accordion-panel value="2">
+                <p-accordion-panel value="3">
                   <p-accordion-header>Reformulations</p-accordion-header>
                   <p-accordion-content>
                     <p class="m-0">

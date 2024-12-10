@@ -112,6 +112,7 @@ export class InterviewSimulationPageComponent implements OnInit {
   };
   isListening: boolean = false;
   isLoading: boolean = false;
+  numberQuestionsInSimulation: number = 3;
 
   ngOnInit(): void {
     this.step = 1;
@@ -172,7 +173,10 @@ export class InterviewSimulationPageComponent implements OnInit {
       .generateQuestionsBasedOnProfile(this.profileInfo)
       .subscribe((result: string[]) => {
         this.technicalQuestions = result;
-        this.simulationQuestions = this.getRandomQuestions(result, 3);
+        this.simulationQuestions = this.getRandomQuestions(
+          result,
+          this.numberQuestionsInSimulation
+        );
         if (this.step) {
           this.setSteps(this.step + 1);
         }
@@ -270,12 +274,17 @@ export class InterviewSimulationPageComponent implements OnInit {
         const relevanceMatch = text.match(relevanceRegex);
         const rephrasingMatch = text.match(rephrasingRegex);
 
+        const cleanText = (input: string | undefined) =>
+          input ? input.replace(/\*\*.*?\*\*/g, '').trim() : '';
+
         // Créer un objet DetailedFeedback
         const detailedfeedback: DetailedFeedback = {
-          pro: proMatch ? proMatch[1].trim() : '',
-          cons: consMatch ? consMatch[1].trim() : '',
-          relevance: relevanceMatch ? relevanceMatch[1].trim() : '',
-          rephrasing: rephrasingMatch ? rephrasingMatch[1].trim() : '',
+          pro: cleanText(proMatch ? proMatch[1].trim() : ''),
+          cons: cleanText(consMatch ? consMatch[1].trim() : ''),
+          relevance: cleanText(relevanceMatch ? relevanceMatch[1].trim() : ''),
+          rephrasing: cleanText(
+            rephrasingMatch ? rephrasingMatch[1].trim() : ''
+          ),
         };
 
         qa.detailedFeedback = detailedfeedback;
