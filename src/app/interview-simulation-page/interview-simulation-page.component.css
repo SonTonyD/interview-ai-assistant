@@ -51,6 +51,7 @@ h2 {
   height: 90%;
   border-radius: 10px;
   border: 1px solid var(--color-border);
+  background-color: white;
 }
 
 .profile-form textarea:focus {
@@ -84,6 +85,7 @@ input {
   border-radius: 10px;
   border: 1px solid var(--color-border);
   width: 300px;
+  background-color: white;
 }
 
 input:focus {
@@ -163,6 +165,7 @@ input:focus {
 
   border-radius: 10px;
   border: 1px solid var(--color-border);
+  background-color: white;
 }
 
 .simulation-answer textarea:focus {
