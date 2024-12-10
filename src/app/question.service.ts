@@ -16,8 +16,8 @@ export interface ProfileInfo {
   providedIn: 'root',
 })
 export class QuestionService {
-  private readonly apiUrl = 'http://127.0.0.1:8000/question';
-  private readonly apiUrl2 =
+  private readonly apiUrl2 = 'http://127.0.0.1:8000/question';
+  private readonly apiUrl =
     'https://interview-ai-assistant-api.onrender.com/question';
 
   constructor(private http: HttpClient) {}
