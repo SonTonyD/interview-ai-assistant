@@ -99,6 +99,7 @@ export class InterviewSimulationPageComponent implements OnInit {
     objectif_entretien: '',
     offre_emploi: '',
   };
+  isListening: boolean = false;
 
   ngOnInit(): void {
     this.step = 1;
@@ -107,7 +108,37 @@ export class InterviewSimulationPageComponent implements OnInit {
   constructor(
     private interviewRecordService: InterviewRecordService,
     private questionService: QuestionService
-  ) {}
+  ) {
+    const SpeechRecognition =
+      (window as any).SpeechRecognition ||
+      (window as any).webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+      alert('Votre navigateur ne supporte pas la Web Speech API.');
+      return;
+    }
+
+    this.recognition = new SpeechRecognition();
+    this.recognition.lang = 'fr-FR';
+    this.recognition.interimResults = false;
+    this.recognition.maxAlternatives = 1;
+
+    this.recognition.onresult = (event: any) => {
+      const result = event.results[0][0].transcript;
+      this.currentAnswer += result + '\n';
+      console.log('Résultat :', result);
+    };
+
+    this.recognition.onerror = (event: any) => {
+      console.error('Erreur de reconnaissance vocale:', event.error);
+      this.isListening = false;
+    };
+
+    this.recognition.onend = () => {
+      console.log("Arrêt de l'écoute");
+      this.isListening = false;
+    };
+  }
 
   setSteps(newStep: number) {
     this.step = newStep;
@@ -129,6 +160,23 @@ export class InterviewSimulationPageComponent implements OnInit {
           this.setSteps(this.step + 1);
         }
       });
+  }
+
+  recognition: any | null = null;
+
+  startListening(): void {
+    if (!this.recognition) return;
+
+    this.currentAnswer = '';
+    this.isListening = true;
+    this.recognition.start();
+  }
+
+  stopListening(): void {
+    if (!this.recognition) return;
+
+    this.recognition.stop();
+    this.isListening = false;
   }
 
   updateInterviewRecordQuestionAnswers(

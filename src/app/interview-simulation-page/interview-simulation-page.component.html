@@ -52,7 +52,7 @@
           ></textarea>
         </label>
         <div class="flex-end">
-          <button type="button" (click)="submitForm()">Next Step</button>
+          <button type="button" (click)="submitForm()">Étape suivante</button>
         </div>
       </form>
       } @if (step === 2) {
@@ -69,10 +69,10 @@
         </div>
         <div class="buttons-step">
           <div class="flex-center">
-            <button (click)="setSteps(step - 1)">Previous Step</button>
+            <button (click)="setSteps(step - 1)">Étape précédente</button>
           </div>
           <div class="flex-center">
-            <button (click)="setSteps(step + 1)">Next Step</button>
+            <button (click)="setSteps(step + 1)">Étape suivante</button>
           </div>
         </div>
       </div>
@@ -89,13 +89,26 @@
             id="reponse"
           ></textarea>
         </label>
+        @if (isListening) {
+        <p>Écoute en cours... 🔴</p>
 
+        } @else {
+        <p></p>
+        }
         <div class="flex-end">
-          @if (currentQuestionNumber + 1 < simulationQuestions.length) {
-          <button (click)="nextQuestion()">Valider</button>
-          } @else {
-          <button (click)="onFinishSimulation()">Terminer la simulation</button>
-          }
+          <div class="simulation-btn-wrapper">
+            @if (isListening) {
+            <button (click)="stopListening()">Arrêter l'écoute🛑</button>
+            }
+            <button (click)="startListening()">🎤 Parler</button>
+            @if (currentQuestionNumber + 1 < simulationQuestions.length) {
+            <button (click)="nextQuestion()">Question suivante</button>
+            } @else {
+            <button (click)="onFinishSimulation()">
+              Terminer la simulation
+            </button>
+            }
+          </div>
         </div>
       </div>
       } @if (step === 4) {

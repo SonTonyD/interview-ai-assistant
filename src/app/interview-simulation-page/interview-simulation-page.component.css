@@ -13,6 +13,10 @@ h2 {
   justify-content: center;
   height: 90vh;
 }
+.content {
+  max-width: 900px;
+  width: 900px;
+}
 
 .flex-center {
   display: flex;
@@ -27,6 +31,9 @@ h2 {
 /* step 1 */
 
 .profile-form {
+  max-width: 1024px;
+  width: 900px;
+
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
@@ -72,7 +79,7 @@ button:hover {
 
 input {
   padding-block: 0.5rem;
-  padding-inline: 1rem;
+  padding-right: 1rem;
   border-radius: 10px;
   border: 1px solid var(--color-border);
   width: 300px;
@@ -166,6 +173,11 @@ input:focus {
   color: var(--color-secondary-text);
 }
 
+.simulation-btn-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+
 .flex-end {
   display: flex;
   justify-content: flex-end;
@@ -198,6 +210,11 @@ input:focus {
 @media (max-width: 1024px) {
   .container {
     margin-inline: 10px;
+  }
+
+  .content {
+    max-width: none;
+    width: auto;
   }
 
   label {
