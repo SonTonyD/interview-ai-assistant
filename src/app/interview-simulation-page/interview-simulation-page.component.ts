@@ -105,7 +105,7 @@ export class InterviewSimulationPageComponent implements OnInit {
   isLoading: boolean = false;
 
   ngOnInit(): void {
-    this.step = 4;
+    this.step = 1;
   }
 
   constructor(
