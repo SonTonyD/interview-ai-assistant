@@ -27,6 +27,7 @@ button {
   border-radius: 20px;
   padding: 0.5rem 3rem;
   cursor: pointer;
+  color: black;
 }
 
 .nav button {
