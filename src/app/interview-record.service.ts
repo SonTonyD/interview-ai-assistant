@@ -13,8 +13,8 @@ export interface FeedbackRequest {
   providedIn: 'root',
 })
 export class InterviewRecordService {
-  private readonly apiUrl2 = 'http://127.0.0.1:8000/interview';
-  private readonly apiUrl =
+  private readonly apiUrl = 'http://127.0.0.1:8000/interview';
+  private readonly apiUrl2 =
     'https://interview-ai-assistant-api.onrender.com/interview';
 
   constructor(private http: HttpClient) {}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { AccordionModule } from 'primeng/accordion';
 import {
   FeedbackRequest,
   InterviewRecordService,
@@ -18,12 +19,20 @@ export interface QuestionAnswer {
   question: string;
   answer: string;
   feedback?: string;
+  detailedFeedback?: DetailedFeedback;
+}
+
+export interface DetailedFeedback {
+  pro: string;
+  cons: string;
+  relevance: string;
+  rephrasing: string;
 }
 
 @Component({
   selector: 'app-interview-simulation-page',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, AccordionModule],
   templateUrl: './interview-simulation-page.component.html',
   styleUrl: './interview-simulation-page.component.css',
 })
@@ -238,9 +247,41 @@ export class InterviewSimulationPageComponent implements OnInit {
           if (this.step) {
             this.setSteps(this.step + 1);
           }
+          this.interviewRecord.question_answers = this.parseFeedback(
+            this.interviewRecord.question_answers
+          );
           this.isLoading = false;
         });
     }
+  }
+
+  parseFeedback(questionAnswers: QuestionAnswer[]) {
+    questionAnswers.forEach((qa) => {
+      const text = qa.feedback;
+      if (text) {
+        const proRegex = /(\*\*Points forts\*\*.*?)(?=\*\*|$)/s;
+        const consRegex = /(\*\*Points faibles\*\*.*?)(?=\*\*|$)/s;
+        const relevanceRegex =
+          /(\*\*Pertinence par rapport au poste et au secteur\*\*.*?)(?=\*\*|$)/s;
+        const rephrasingRegex = /(\*\*Reformulations\*\*.*?)(?=\*\*|$)/s;
+
+        const proMatch = text.match(proRegex);
+        const consMatch = text.match(consRegex);
+        const relevanceMatch = text.match(relevanceRegex);
+        const rephrasingMatch = text.match(rephrasingRegex);
+
+        // Créer un objet DetailedFeedback
+        const detailedfeedback: DetailedFeedback = {
+          pro: proMatch ? proMatch[1].trim() : '',
+          cons: consMatch ? consMatch[1].trim() : '',
+          relevance: relevanceMatch ? relevanceMatch[1].trim() : '',
+          rephrasing: rephrasingMatch ? rephrasingMatch[1].trim() : '',
+        };
+
+        qa.detailedFeedback = detailedfeedback;
+      }
+    });
+    return questionAnswers;
   }
 
   downloadPDF() {
