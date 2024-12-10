@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 import {
   FeedbackRequest,
   InterviewRecordService,
@@ -239,6 +241,37 @@ export class InterviewSimulationPageComponent implements OnInit {
           this.isLoading = false;
         });
     }
+  }
+
+  downloadPDF() {
+    const doc = new jsPDF();
+
+    // Ajouter un titre
+    doc.setFontSize(16);
+    doc.text("Résumé de l'interview", 10, 10);
+
+    // Ajout d'un sous-titre
+    doc.setFontSize(12);
+    doc.text(`ID de l'interview: ${this.interviewRecord.id}`, 10, 20);
+    doc.text(`Utilisateur: ${this.interviewRecord.user_id}`, 10, 30);
+
+    // Formatage des questions et réponses dans un tableau
+    const tableData = this.interviewRecord.question_answers.map((qa) => [
+      qa.question || '', // Remplace undefined par une chaîne vide
+      qa.answer || '', // Remplace undefined par une chaîne vide
+      qa.feedback || '', // Remplace undefined par une chaîne vide
+    ]);
+
+    autoTable(doc, {
+      head: [['Question', 'Réponse', 'Retour']],
+      body: tableData,
+      startY: 40,
+      theme: 'striped',
+      styles: { fontSize: 10, cellPadding: 5 },
+    });
+
+    // Télécharger le PDF
+    doc.save('interview-summary.pdf');
   }
 
   private getRandomQuestions(questions: string[], count: number): string[] {
