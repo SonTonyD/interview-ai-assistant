@@ -1,6 +1,8 @@
-# 🧠 AI Interview Coach
+# 🧠 Interview AI Assistant
 
 Une application web alimentée par l'IA pour vous aider à **préparer vos entretiens d'embauche de manière personnalisée, interactive et efficace**.
+
+Lien vers la démo : https://interview-ai-assistant-1w8p.vercel.app/
 
 ---
 
