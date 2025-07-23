@@ -266,11 +266,12 @@ export class InterviewSimulationPageComponent implements OnInit {
     questionAnswers.forEach((qa) => {
       const text = qa.feedback;
       if (text) {
-        const proRegex = /(\*\*Points forts\*\*.*?)(?=\*\*|$)/s;
-        const consRegex = /(\*\*Points faibles\*\*.*?)(?=\*\*|$)/s;
+        const proRegex = /\*\*Points forts :\*\*\s*([\s\S]*?)(?=^\*\*|$)/m;
+        const consRegex = /\*\*Points faibles :\*\*\s*([\s\S]*?)(?=^\*\*|$)/m;
         const relevanceRegex =
-          /(\*\*Pertinence par rapport au poste et au secteur\*\*.*?)(?=\*\*|$)/s;
-        const rephrasingRegex = /(\*\*Reformulations\*\*.*?)(?=\*\*|$)/s;
+          /\*\*Pertinence par rapport au poste et au secteur :\*\*\s*([\s\S]*?)(?=^\*\*|$)/m;
+        const rephrasingRegex =
+          /\*\*Reformulations plus adaptées :\*\*\s*([\s\S]*?)(?=^\*\*|$)/m;
 
         const proMatch = text.match(proRegex);
         const consMatch = text.match(consRegex);
