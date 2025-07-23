@@ -95,11 +95,14 @@ export class InterviewSimulationPageComponent implements OnInit {
   title = 'interview-ai-assistant';
 
   /* formulaire profile */
-  personnal_description = '';
-  secteur = '';
-  poste = '';
-  objectif_entretien = '';
-  offre_emploi = '';
+  personnal_description =
+    'Développeur Java avec 5 ans d’expérience, spécialisé dans les applications backend et les architectures microservices. Curieux, rigoureux et passionné par les bonnes pratiques de développement.';
+  secteur = "Technologies de l'information / Développement logiciel";
+  poste = 'Développeur Java Backend';
+  objectif_entretien =
+    'Obtenir un poste stimulant avec des responsabilités techniques au sein d’une équipe Agile';
+  offre_emploi =
+    'Nous recherchons un développeur Java expérimenté pour rejoindre notre équipe backend. Vous travaillerez sur la conception et l’évolution de nos services REST, en collaboration avec les équipes DevOps et Frontend. Maîtrise de Spring Boot, JPA, Docker et des bases de données relationnelles exigée.';
 
   profileInfo: ProfileInfo = {
     id: '1',
